@@ -10,7 +10,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbWindowModule, NbSidebarModule, NbToastrModule, NbMenuModule, NbActionsModule, NbUserModule, NbContextMenuModule, NbIconModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbWindowModule, NbSidebarModule, NbToastrModule, NbMenuModule, NbActionsModule, NbUserModule, NbContextMenuModule, NbIconModule, NbSelectModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { UserHomeComponent } from './user/pages/home/user-home/user-home.component';
 import { AdminHomeComponent } from './admin/pages/home/admin-home/admin-home.component';
@@ -32,6 +32,8 @@ import { SidebarAdminComponent } from './componets/admin/sidebar/sidebar-admin/s
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfesorHomeComponent } from './admin/pages/home/profesor-home/profesor-home.component';
 import { AlumnoHomeComponent } from './admin/pages/home/alumno-home/alumno-home.component';
+import { GrupoHomeComponent } from './admin/pages/grupos/grupo-home/grupo-home.component';
+import { GrupoModificarComponent } from './admin/pages/grupos/grupo-modificar/grupo-modificar.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { AlumnoHomeComponent } from './admin/pages/home/alumno-home/alumno-home.
     ErrorPageComponent,
     ProfesorHomeComponent,
     AlumnoHomeComponent,
+    GrupoHomeComponent,
+    GrupoModificarComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +81,8 @@ import { AlumnoHomeComponent } from './admin/pages/home/alumno-home/alumno-home.
     NbActionsModule,
     NbUserModule,
     NbContextMenuModule,
-    NbIconModule
+    NbIconModule,
+    NbSelectModule
   ],
   providers: [NbWindowModule, AuthGuard],
   bootstrap: [AppComponent]

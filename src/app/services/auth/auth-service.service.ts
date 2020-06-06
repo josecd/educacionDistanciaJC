@@ -39,7 +39,7 @@ export class AuthServiceService {
         .signInWithEmailAndPassword(value.email, value.password)
         .then(
           res => {
-            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE).then(res => {
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(res => {
 
             })
 

@@ -5,6 +5,11 @@
   <app-header-admin  *ngIf="test.estado === true"></app-header-admin>
   </nb-layout-header >
 
+  <nb-sidebar class="scrollable" responsive="true" state="compacted" *ngIf="test.estado === true" > 
+    <app-sidebar-admin select="nb-menu"> </app-sidebar-admin>
+  </nb-sidebar>
+  
+
   <nb-layout-column>
 
     <router-outlet></router-outlet>

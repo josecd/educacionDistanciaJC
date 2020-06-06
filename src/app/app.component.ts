@@ -39,6 +39,16 @@ export class AppComponent {
           globals.type = user.type;
           globals.name = user.name;
           globals.estado = true;
+          // if (user.type === 'STUDENT') {
+          //   this.router.navigate(['inicio-estudiante']);
+
+          // } else if (user.type === 'TEACHER') {
+          //   this.router.navigate(['inicio-maestro']);
+
+          // } else {
+          //   this.router.navigate(['inicio-administrador']);
+
+          // }
           this.showHeader = true;
           this.load = true;
         })

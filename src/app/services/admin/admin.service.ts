@@ -21,6 +21,9 @@ export class AdminService {
   getUsers(){
     return this.afs.collection('users').valueChanges();
   }
+  getNotifications(){
+    return this.afs.collection('notifications').valueChanges();
+  }
 
   addNewUser(user): Promise<any> {
     return new Promise((resolve, reject) => {

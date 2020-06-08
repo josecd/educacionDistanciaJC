@@ -71,7 +71,7 @@ export class HeaderAdminComponent implements OnInit {
   }
 
   async loadUsers() {
-    this.userObs$ = await this._admin.getUsers();
+    this.userObs$ = await this._admin.getNotifications();
     this.userSub = this.userObs$.subscribe(res => {
       this.datas = res;
       this.userNotification = []
@@ -79,9 +79,9 @@ export class HeaderAdminComponent implements OnInit {
       this.datas.forEach(async element => {
 
         const r = {
-          title: element.name +"   "+element.type ,
+          title: element.name,
           link: '/inicio/' + element._id,
-          subtitle: element.type +'<br>'
+          // subtitle: element.type +'<br>'
         }
         this.userNotification.push(r)
         // this.addMenuItem(element.name, element._id)

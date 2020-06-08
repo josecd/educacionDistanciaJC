@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import { addNotification } from './repository/notifications.repository';
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
@@ -128,3 +129,22 @@ exports.deleteUser = functions.firestore.document('users/{usuarioId}').onDelete(
         return { error: 'data undefined' }
     }
 });
+
+exports.notification = functions.firestore.document('users/{idUser}').onCreate(async event =>{
+    const dataNotifi = event.data();
+    if (!dataNotifi)return;
+ 
+    const notification={
+        name: dataNotifi.name,
+        idUser: dataNotifi._id,
+        msg: 'Se ha creado un usuario'
+    }
+    
+    try {
+        await admin.firestore().collection('notifications').add(notification); 
+  
+    } catch (error) {
+        console.log('SE PRODUJO UN ERROR AL AÑADIR LA NOTIFACIÓN');
+    }
+
+})

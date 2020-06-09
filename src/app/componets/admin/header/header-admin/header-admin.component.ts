@@ -77,10 +77,11 @@ export class HeaderAdminComponent implements OnInit {
       this.userNotification = []
 
       this.datas.forEach(async element => {
-
+        console.log(element);
+        
         const r = {
           title: element.name,
-          link: '/inicio/' + element._id,
+          link: '/inicio/' + element.idUser,
           // subtitle: element.type +'<br>'
         }
         this.userNotification.push(r)

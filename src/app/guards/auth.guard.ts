@@ -22,21 +22,20 @@ export class AuthGuard implements CanActivate {
     private router: Router,
 
   ) { }
-  canActivate(
+  async canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    state: RouterStateSnapshot):  Promise<any>  {
 
-    return new Promise((resolve, reject) => {
-      this._auth.getCurrentUser()
-        .then(user => {
-       
-          
+    return new Promise(async (resolve, reject) => {
+      const auths = await this.afAuth.authState.subscribe(res => {
+        if (res?.uid) {
           return resolve(true);
-        }, err => {
-          
-           this.router.navigate(['/login']);
+        }else{
+          this.router.navigate(['/login']);
           return resolve(false);
-        });
+        }
+
+      })
     });
   }
 }

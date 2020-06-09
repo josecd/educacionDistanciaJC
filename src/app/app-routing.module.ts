@@ -16,6 +16,7 @@ import { ProfesoresHomeComponent } from './admin/pages/profesores/profesores-hom
 
 const routes: Routes = [
   { path: '',redirectTo: 'inicio',pathMatch: 'full'},
+  // { path: 'iniciouser', component: UserHomeComponent,
   { path: 'inicio', component: UserHomeComponent,canActivate: [AuthGuard]},
   { path: 'inicio/:id', component: UserHomeComponent,canActivate: [AuthGuard]},
 

@@ -98,15 +98,15 @@ export class LoginAlumnoComponent implements OnInit {
           globals.type = res.type;
           globals.name = res.name;
           globals.estado = true;
-          // if (res?.type === 'ADMIN') {
-          //   this.router.navigateByUrl('/inicio-administrador');
-          // } else if (res?.type === 'STUDENT') {
-          //   this.router.navigateByUrl('/inicio-estudiante');
-          // } else if (res?.type === 'TEACHER') {
-          //   this.router.navigateByUrl('/inicio-maestro');  
-          // }else{
-          //   console.log('Regresa');
-          // }
+           if (res?.type === 'ADMIN') {
+             this.router.navigateByUrl('/inicio-administrador');
+           } else if (res?.type === 'STUDENT') {
+             this.router.navigateByUrl('/inicio-estudiante');
+           } else if (res?.type === 'TEACHER') {
+             this.router.navigateByUrl('/inicio-maestro');  
+           }else{
+             console.log('Regresa');
+           }
         })
         // this.router.navigateByUrl('/administrador');
       }, err => {

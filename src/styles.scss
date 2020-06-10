@@ -37,3 +37,26 @@ $eduacionDistanciJC-theme: mat-light-theme($eduacionDistanciJC-primary, $eduacio
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.mat-paginator-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 56px;
+  padding: 0 8px;
+  flex-wrap: wrap-reverse;
+  width: 100%;
+}

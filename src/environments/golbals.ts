@@ -1,5 +1,7 @@
 export const globals={
     type:"",
     name:"",
-    estado:false
+    udi:"",
+    estado:false,
+    group:""
 }

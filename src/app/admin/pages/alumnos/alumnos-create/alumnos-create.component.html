@@ -32,7 +32,7 @@
                         <mat-form-field appearance="fill" class="form-control">
                           <mat-label>Seleccionar</mat-label>
                           <mat-select formControlName="idGroup">
-                            <mat-option *ngFor="let item of dataGroup " [value]="item._id">{{item.name}}</mat-option>
+                            <mat-option *ngFor="let item of dataGroup " [value]="item">{{item.name}}</mat-option>
                           </mat-select>
                         </mat-form-field>
                       </div>

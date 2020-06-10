@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { addNotification } from './repository/notifications.repository';
+
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
@@ -30,7 +30,7 @@ exports.addAdmin = functions.https.onCall((data, context) => {
                 updated_at: new Date(),
                 startPassword: startPassword,
                 email: email,
-                type: type,
+                type: type, 
                 name: name,
                 isDeleted: false,
                 idGroup: idGroup,
@@ -39,7 +39,7 @@ exports.addAdmin = functions.https.onCall((data, context) => {
             }).catch(error => {
                 console.log('falle', error)
             })
-            await admin.firestore().collection('groups').doc(idGroup).collection('students').doc(dataid).set({
+            await admin.firestore().collection('groups').doc(idGroup._id).collection('students').doc(dataid).set({
                 created_at: new Date(),
                 updated_at: new Date(),
                 _id: dataid,

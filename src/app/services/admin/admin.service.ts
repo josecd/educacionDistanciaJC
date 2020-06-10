@@ -70,6 +70,11 @@ export class AdminService {
     this.adminObs$ = this.adminRef.valueChanges();
     return this.adminObs$;
   }
+  getMateriasBygroup(idGroup) {
+    this.adminRef = this.afs.collection('groups').doc(idGroup).collection('subjects');
+    this.adminObs$ = this.adminRef.valueChanges();
+    return this.adminObs$;
+  }
   getMateriasCalificacionesByunidad(idMateria, idUnidad) {
     this.adminRef = this.afs.collection('subjects').doc(idMateria).collection(idUnidad);
     this.adminObs$ = this.adminRef.valueChanges();

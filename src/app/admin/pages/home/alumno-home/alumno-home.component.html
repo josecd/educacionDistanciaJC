@@ -6,7 +6,7 @@
           </div>
         <div class="ibox">
           <div class="ibox-title">
-            <h5>Profesores</h5>
+            <h5>Materias</h5>
             <div class="ibox-tools">
               <!-- <a class="btn btn-primary btn-xs" (click)="goCreateAlumno()">Crear alumno</a> -->
             </div>
@@ -34,7 +34,7 @@
                   <!-- ID Column -->
                   <ng-container matColumnDef="name">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-                    <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                    <td mat-cell *matCellDef="let row"> {{row.idGroup.name}} </td>
                   </ng-container>
   
   

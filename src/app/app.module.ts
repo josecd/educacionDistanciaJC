@@ -34,6 +34,7 @@ import { ProfesorHomeComponent } from './admin/pages/home/profesor-home/profesor
 import { AlumnoHomeComponent } from './admin/pages/home/alumno-home/alumno-home.component';
 import { GrupoHomeComponent } from './admin/pages/grupos/grupo-home/grupo-home.component';
 import { GrupoModificarComponent } from './admin/pages/grupos/grupo-modificar/grupo-modificar.component';
+import { HomeInicioUserComponent } from './user/pages/home-inicio-user/home-inicio-user.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { GrupoModificarComponent } from './admin/pages/grupos/grupo-modificar/gr
     AlumnoHomeComponent,
     GrupoHomeComponent,
     GrupoModificarComponent,
+    HomeInicioUserComponent,
   ],
   imports: [
     BrowserModule,

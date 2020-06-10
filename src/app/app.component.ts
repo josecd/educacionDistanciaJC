@@ -38,6 +38,10 @@ export class AppComponent {
         this.userSub = this.userObs$.subscribe(user => {
           globals.type = user.type;
           globals.name = user.name;
+          globals.name = user.uid;
+          if (user.type === 'STUDENT') {
+            globals.group = user.idGroup;
+             }
           globals.estado = true;
           // if (user.type === 'STUDENT') {
           //   this.router.navigate(['inicio-estudiante']);

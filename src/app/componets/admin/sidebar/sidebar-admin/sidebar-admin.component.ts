@@ -31,11 +31,6 @@ export class SidebarAdminComponent implements OnInit {
           icon: 'home-outline'
         },
         {
-          title: 'Grupos',
-          link: '/grupos', 
-          icon: 'home-outline'
-        },
-        {
           title: 'Materias',
           link: '/materias', 
           icon: 'home-outline'

@@ -6,7 +6,7 @@
                 <div class="ibox-title">
                     <h5>Grupos</h5>
                     <div class="ibox-tools">
-                        <!-- <a href="" class="btn btn-primary btn-xs">Crear profesor</a> -->
+                        <a href="" class="btn btn-primary btn-xs" (click)="teest()" >Crear profesor</a>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -48,6 +48,7 @@
                                 <th mat-header-cell *matHeaderCellDef>Acciones</th>
                                 <td mat-cell class="buttons" mat-cell *matCellDef="let user">
                                     <button mat-cell mat-raised-button color="primary"
+                                    (click)="teest()" 
                                       >Editar</button>
                                     <button  mat-cell mat-raised-button color="primary"
                                        (click)="goVerGrupo(user._id)" >Ver</button>

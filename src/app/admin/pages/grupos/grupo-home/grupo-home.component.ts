@@ -54,7 +54,12 @@ export class GrupoHomeComponent implements OnInit {
 
   goVerGrupo(id){
     this.router.navigate(['/modificar-grupos',id]);
+console.log('ddd');
 
     // this.router.navigateByUrl('/modificar-grupos',id); 
+  }
+  teest(){
+    console.log("asdasdas");
+    
   }
 }

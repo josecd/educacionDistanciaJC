@@ -1,14 +1,12 @@
 <div class="row">
     <div class="col-lg-12">
       <div class="wrapper wrapper-content animated fadeInUp">
-        <div class="alert alert-primary" role="alert">
-            Perfil alumno
-          </div>
+
         <div class="ibox">
           <div class="ibox-title">
-            <h5>Tareas</h5>
+            <h5>Tareas de la materia</h5>
             <div class="ibox-tools">
-              <!-- <a class="btn btn-primary btn-xs" (click)="goCreateAlumno()">Crear alumno</a> -->
+              <!-- <a class="btn btn-primary btn-xs" >Crear tarea</a> -->
             </div>
           </div>
           <div class="ibox-content">
@@ -33,30 +31,32 @@
   
                   <!-- ID Column -->
                   <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-                    <td mat-cell *matCellDef="let row"> {{row.idGroup.name}} </td>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tarea </th>
+                    <td mat-cell *matCellDef="let row"> {{row.dataStudent}} </td>
                   </ng-container>
-  
-  
-  
   
                   <!-- Progress Column -->
                   <ng-container matColumnDef="email">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
-                    <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </th>
+                    <td mat-cell *matCellDef="let row"> {{row.description}} </td>
                   </ng-container>
   
-  
+                    <!-- Progress Column -->
+                    <ng-container matColumnDef="calf">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Calificacion </th>
+                        <td mat-cell *matCellDef="let row"> {{row.calf}} </td>
+                      </ng-container>
+      
                   <!-- acciones Column -->
   
                   <ng-container matColumnDef="acciones">
                     <th mat-header-cell *matHeaderCellDef>Acciones</th>
                     <td mat-cell class="buttons" mat-cell *matCellDef="let user">
-                      <button mat-cell mat-raised-button color="primary">Editar</button>
-                      <button mat-cell mat-raised-button color="primary">Ver</button>
+                      <!-- <button   mat-cell mat-raised-button color="primary">Entregas</button> -->
+                      <button   mat-cell mat-raised-button color="primary">Calificar</button>
                     </td>
                   </ng-container>
-  
+   
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;">
                   </tr>

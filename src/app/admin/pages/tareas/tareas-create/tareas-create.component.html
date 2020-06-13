@@ -1,1 +1,90 @@
-<p>tareas-create works!</p>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Agregar tarea <small></small></h5>
+                <div class="ibox-tools">
+                    <a (click)="close()" class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <form [formGroup]="tareasForm">
+                    <div class="form-group  row"><label class="col-sm-2 col-form-label">Nombre</label>
+                        <div class="col-sm-10">
+                            <input formControlName="name" type="text" class="form-control"></div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <label for="projectinput1">Tipo de tarea</label>
+                        <mat-form-field appearance="fill" class="form-control">
+                          <mat-label>Seleccionar</mat-label>
+                          <mat-select formControlName="type">
+                            <mat-option value="TASK">Tarea</mat-option>
+                            <mat-option value="VIDEO">Video</mat-option>
+                            <mat-option value="PROYECTO">Proyecto</mat-option>
+                            <mat-option value="ONLINE">Streaming</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+
+                      <!-- Subir video -->
+                      <div *ngIf="tareasForm.value.type === 'VIDEO'"  class="text-xs-center">
+                        <div   class="card-block">
+                            <!-- <img src="imageSrc" id="blah" class="rounded-circle  height-150" alt="Seleccionar imagen"> -->
+                            <img class="height-150" width="50%" id="blah" [src]="imageSrc"
+                                alt="Selecciona una imagen" />
+                        </div>
+                        <div class="contenedor">
+                            <div class="contenedor_formulario">
+                                <form [formGroup]="archivoForm">
+                                    <div class="file has-name is-boxed">
+                                        <label class="custom-file center-block block">
+                                            <input accept="video/*" multiple class="file-input" type="file"
+                                                (change)="cambioArchivo($event)" class="custom-file-input">
+                                            <span class="custom-file-control">
+                                                <span class="custom-file-control">
+                                                    Elegir un archivo…
+                                                </span>
+                                            </span>
+                                            <span class="custom-file-control">
+                                                {{ mensajeArchivo }}
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <hr>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fin de subir video -->
+
+
+
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group row"><label class="col-sm-2 col-form-label" style="padding-right: 56px;">Descripcion</label>
+                        <div class="col-sm-10">
+                            <input formControlName="description" type="text" class="form-control">
+                        </div>
+                    </div>
+
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group row">
+                        <div class="col-sm-4 col-sm-offset-2" style="margin-left: auto;">
+                            <button (click)="close()" class="btn btn-white btn-sm" type="submit">Cancelar</button>
+                            <button [disabled]="!tareasForm.valid" (click)="subirArchivo()" class="btn btn-primary btn-sm"
+                                type="submit">Enviar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

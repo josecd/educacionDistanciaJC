@@ -18,10 +18,10 @@ export class AdminService {
 
   //Usuarios
 
-  getUsers(){
+  getUsers() {
     return this.afs.collection('users').valueChanges();
   }
-  getNotifications(){
+  getNotifications() {
     return this.afs.collection('notifications').valueChanges();
   }
 
@@ -70,10 +70,20 @@ export class AdminService {
     this.adminObs$ = this.adminRef.valueChanges();
     return this.adminObs$;
   }
+  getMateriaById(id) {
+    return this.afs.collection('subjects').doc(id).valueChanges();
+  }
+  getMateriaByIdGroup(idGroup, idSubject){
+    return this.afs.collection('groups').doc(idGroup).collection('subjects').doc(idSubject).valueChanges();
+  }
   getMateriasBygroup(idGroup) {
     this.adminRef = this.afs.collection('groups').doc(idGroup).collection('subjects');
     this.adminObs$ = this.adminRef.valueChanges();
     return this.adminObs$;
+  }
+  getMateriasBygroupFfilter(idGroup, idTeacher) {
+    return this.afs.collection('groups').doc(idGroup).collection('subjects', ref => ref.where('idProfesor', '==', idTeacher)).valueChanges();
+
   }
   getMateriasCalificacionesByunidad(idMateria, idUnidad) {
     this.adminRef = this.afs.collection('subjects').doc(idMateria).collection(idUnidad);
@@ -105,6 +115,24 @@ export class AdminService {
     })
   }
 
+  async setMateriaByGroup(idGroup, data): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      const id = this.afs.createId();
+      const f = await this.afs.collection('groups').doc(idGroup).collection('subjects').doc(id).set({
+        created_at: new Date(),
+        updated_at: new Date(),
+        _id: id,
+        idGroud: idGroup,
+        idSubject: data.idSubject,
+        idTeacher: data.idTeacher,
+        idProfesor: data.idTeacher._id,
+        idMateria: data.idSubject._id
+      }).then(res => {
+        resolve(res)
+      })
+        .catch(error => reject(error))
+    })
+  }
 
   ///Profesores
 
@@ -115,17 +143,62 @@ export class AdminService {
   }
 
   //Calificaciones
-  getAlumnosByGroup(idGroup){
+  getAlumnosByGroup(idGroup) {
     return this.afs.collection('groups').doc(idGroup).collection('students').valueChanges();
   }
-  
+
   getCalificacionesByGroup(idGroup, unidad) {
-    return this.afs.collection('groups').doc(idGroup).collection('calif',ref => ref.where('unidad','==',unidad)).valueChanges()
+    return this.afs.collection('groups').doc(idGroup).collection('calf', ref => ref.where('unidad', '==', unidad)).valueChanges()
   }
 
-  getCalificacionesByAlumno(idGroup, unidad,idAlumno) {
-    return this.afs.collection('groups').doc(idGroup).collection('calif',ref => ref.where('unidad','==',unidad).where('idAlumno','==',idAlumno)).valueChanges()
+  getCalificacionesByAlumno(idGroup, unidad, idAlumno) {
+    return this.afs.collection('groups').doc(idGroup).collection('calf', ref => ref.where('unidad', '==', unidad).where('idAlumno', '==', idAlumno)).valueChanges()
 
+  }
+
+  //Tareas
+  getTareasbyTeacher(idTeacher,idMAteria) {
+    return this.afs.collection('task', ref => ref.where('idGroup','==',idMAteria).where('idProfesor','==',idTeacher).orderBy('created_at','desc')) .valueChanges();
+  }
+  getTareasbyTeacherEntregas(id) {
+    return this.afs.collection('task').doc(id).collection('taskStudents').valueChanges()
+  }
+  getTareaById(id){
+    return this.afs.collection('task').doc(id).valueChanges();
+  }
+
+  updateStatusTarea(id,estado): Promise<any>{
+    return new Promise(async (resolve, reject) => {
+      this.afs.collection('task').doc(id).update({
+        updated_at: new Date(),
+        status:estado
+      }).then(res=>{
+        resolve(res);
+      }).catch(error=>{
+        reject(error);
+      })
+    });
+  }
+  addTask(data,form): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      const id = this.afs.createId();
+      const f = await this.afs.collection('task').doc(id).set({
+        created_at: new Date(),
+        updated_at: new Date(),
+        _id:id,
+        idGroup:data.idGroud,
+        idMateria:data.idMateria,
+        idProfesor: data.idProfesor,
+        dataTeacher: data.idTeacher,
+        dataMateria: data.idSubject,
+        status:'ACTIVO',
+        type:form.type,
+        description:form.description,
+        name: form.name,
+        url:form.url
+      }).then(res=>{resolve(res)})
+      .catch(error=>{reject(error)})
+    })
   }
 
 }

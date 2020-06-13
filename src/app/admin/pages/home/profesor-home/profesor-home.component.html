@@ -6,9 +6,9 @@
         </div>
         <div class="ibox">
           <div class="ibox-title">
-            <h5>Alumnos</h5>
+            <h5>Materias del profesor</h5>
             <div class="ibox-tools">
-              <a class="btn btn-primary btn-xs" (click)="goCreateAlumno()">Crear alumno</a>
+              <!-- <a class="btn btn-primary btn-xs" >Crear alumno</a> -->
             </div>
           </div>
           <div class="ibox-content">
@@ -33,8 +33,8 @@
   
                   <!-- ID Column -->
                   <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-                    <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Materia </th>
+                    <td mat-cell *matCellDef="let row"> {{row.elementos.idSubject.name}} </td>
                   </ng-container>
   
   
@@ -42,8 +42,8 @@
   
                   <!-- Progress Column -->
                   <ng-container matColumnDef="email">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
-                    <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Profesor </th>
+                    <td mat-cell *matCellDef="let row"> {{row.nameGroup}} </td>
                   </ng-container>
   
   
@@ -52,11 +52,11 @@
                   <ng-container matColumnDef="acciones">
                     <th mat-header-cell *matHeaderCellDef>Acciones</th>
                     <td mat-cell class="buttons" mat-cell *matCellDef="let user">
-                      <button mat-cell mat-raised-button color="primary">Editar</button>
-                      <button mat-cell mat-raised-button color="primary">Ver</button>
+                      <button (click)="goTasks(user.elementos.idGroud, user.elementos._id)"  mat-cell mat-raised-button color="primary">Tareas</button>
+                      <button mat-cell mat-raised-button color="primary">Calificaciones</button>
                     </td>
                   </ng-container>
-  
+   
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;">
                   </tr>

@@ -52,17 +52,7 @@ export class SidebarAdminComponent implements OnInit {
           title: 'inicio',
           link: '/inicio-estudiante', 
           icon: 'home-outline'
-        },
-        {
-          title: 'tareas',
-          link: '/inicio-estudiante', 
-          icon: 'home-outline'
-        },
-        {
-          title: 'calificaciones',
-          link: '/inicio-estudiante', 
-          icon: 'home-outline'
-        },
+        }
       ]
     }else if(this.typeUser.type === 'TEACHER'){
       this.itemsAdmin=[
@@ -70,17 +60,7 @@ export class SidebarAdminComponent implements OnInit {
           title: 'inicio',
           link: '/inicio-maestro', 
           icon: 'home-outline'
-        },
-        {
-          title: 'tareas',
-          link: '/inicio-estudiante', 
-          icon: 'home-outline'
-        },
-        {
-          title: 'calificaciones',
-          link: '/inicio-estudiante', 
-          icon: 'home-outline'
-        },
+        }
       ]
     }
   }

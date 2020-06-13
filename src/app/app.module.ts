@@ -35,6 +35,11 @@ import { AlumnoHomeComponent } from './admin/pages/home/alumno-home/alumno-home.
 import { GrupoHomeComponent } from './admin/pages/grupos/grupo-home/grupo-home.component';
 import { GrupoModificarComponent } from './admin/pages/grupos/grupo-modificar/grupo-modificar.component';
 import { HomeInicioUserComponent } from './user/pages/home-inicio-user/home-inicio-user.component';
+import { MateriasCreateGroupComponent } from './admin/pages/materias/materias-create-group/materias-create-group.component';
+import { CalificacionesHomeComponent } from './admin/pages/calificaciones/calificaciones-home/calificaciones-home.component';
+import { CalificacionesEditComponent } from './admin/pages/calificaciones/calificaciones-edit/calificaciones-edit.component';
+import { TareasEntregasComponent } from './admin/pages/tareas/tareas-entregas/tareas-entregas.component';
+import { OnlineFrameComponent } from './modals/admin/online/online-frame/online-frame.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +67,11 @@ import { HomeInicioUserComponent } from './user/pages/home-inicio-user/home-inic
     GrupoHomeComponent,
     GrupoModificarComponent,
     HomeInicioUserComponent,
+    MateriasCreateGroupComponent,
+    CalificacionesHomeComponent,
+    CalificacionesEditComponent,
+    TareasEntregasComponent,
+    OnlineFrameComponent,
   ],
   imports: [
     BrowserModule,

@@ -34,11 +34,17 @@ export class AppComponent {
     const auths = await this.auth.authState.subscribe(res => {
       if (res?.uid) {
         console.log(res.uid);
+        globals.udi = res.uid;
+
         this.userObs$ = this._user.login(res.uid);
         this.userSub = this.userObs$.subscribe(user => {
           globals.type = user.type;
           globals.name = user.name;
-          globals.name = user.uid;
+
+          console.log(res.uid);
+          console.log(globals.udi);
+          
+          
           if (user.type === 'STUDENT') {
             globals.group = user.idGroup;
              }

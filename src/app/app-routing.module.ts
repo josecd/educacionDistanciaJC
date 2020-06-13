@@ -1,3 +1,5 @@
+import { TareasEntregasComponent } from './admin/pages/tareas/tareas-entregas/tareas-entregas.component';
+import { TareasHomeComponent } from './admin/pages/tareas/tareas-home/tareas-home.component';
 import { GrupoModificarComponent } from './admin/pages/grupos/grupo-modificar/grupo-modificar.component';
 import { AlumnosHomeComponent } from './admin/pages/alumnos/alumnos-home/alumnos-home.component';
 import { GrupoHomeComponent } from './admin/pages/grupos/grupo-home/grupo-home.component';
@@ -36,8 +38,10 @@ const routes: Routes = [
 
   //Mastro
   { path: 'inicio-maestro', component: ProfesorHomeComponent,canActivate: [AuthGuard] },
-  // { path: 'calificaciones', component: MateriasHomeComponent,canActivate: [AuthGuard] },
-  // { path: 'tareas', component: MateriasHomeComponent,canActivate: [AuthGuard] },
+  { path: 'calificaciones/:id/', component: MateriasHomeComponent,canActivate: [AuthGuard] },
+  { path: 'tareas/:id/:idMateria', component: TareasHomeComponent,canActivate: [AuthGuard] },
+  { path: 'tareas/:id', component: TareasEntregasComponent,canActivate: [AuthGuard] },
+
   
   //Estudiante
   { path: 'inicio-estudiante', component: AlumnoHomeComponent,canActivate: [AuthGuard]},

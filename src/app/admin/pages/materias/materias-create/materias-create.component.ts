@@ -28,6 +28,10 @@ export class MateriasCreateComponent implements OnInit {
   };
 
   userForm: FormGroup;
+
+  profesoresObs$: Observable<any>;
+  profesoresSub:Subscription;
+  dataProfesor: any;
   constructor(
     public dialogRef: MatDialogRef<MateriasCreateComponent>,
     public formBuilder: FormBuilder,
@@ -35,8 +39,9 @@ export class MateriasCreateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadForm();
 
+    this.loadForm();
+    
   }
 
   loadForm() {
@@ -59,7 +64,7 @@ export class MateriasCreateComponent implements OnInit {
           Validators.compose([
             Validators.required,
           ])
-        )
+        ) 
       },
     );
   }

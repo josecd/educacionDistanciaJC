@@ -92,9 +92,13 @@ export class LoginAlumnoComponent implements OnInit {
   async login(value) {
     this.auth.loginUser(value).then(
       data => {
+        console.log(data);
+        
         const uid = data.user.uid;
         this.adminObs$ = this._user.login(uid)
         this.adminSub = this.adminObs$.subscribe(res => {
+          console.log(res);
+          
           globals.type = res.type;
           globals.name = res.name;
           globals.estado = true;

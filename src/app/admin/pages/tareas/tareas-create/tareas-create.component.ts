@@ -15,7 +15,7 @@ export class TareasCreateComponent implements OnInit {
   videoForme: FormGroup;
   dataContext
   imageSrc
-
+  idByGroup
   public mensajeArchivo = 'No hay un archivo seleccionado';
   public datosFormulario = new FormData();
   public nombreArchivo = '';
@@ -34,7 +34,9 @@ export class TareasCreateComponent implements OnInit {
 
   ) {
     this.dataContext = data.dataContet;
-    console.log(data);
+    this.idByGroup = data
+    console.log(this.idByGroup);
+    
   }
 
   ngOnInit(): void {
@@ -67,6 +69,13 @@ export class TareasCreateComponent implements OnInit {
           Validators.compose([
             Validators.required,
           ])
+        ),
+        
+        idByGroup: new FormControl(
+          this.dataContext._id,
+          Validators.compose([
+            Validators.required,
+          ])
         )
       },
     );
@@ -83,6 +92,7 @@ export class TareasCreateComponent implements OnInit {
           let archivo = this.datosFormulario.get('archivo');
           this._storageService.uploadProfilePicture(archivo).then(res => {
             this.tareasForm.patchValue({ url: res })
+          
             this._admin.addTask(this.dataContext, this.tareasForm.value).then(res => {
               Swal.hideLoading()
               Swal.close()

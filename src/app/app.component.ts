@@ -41,24 +41,20 @@ export class AppComponent {
           globals.type = user.type;
           globals.name = user.name;
 
-          console.log(res.uid);
-          console.log(globals.udi);
-          
-          
-          if (user.type === 'STUDENT') {
-            globals.group = user.idGroup;
-             }
+          console.log(user);
+            globals.data = user;
+           
           globals.estado = true;
-          // if (user.type === 'STUDENT') {
-          //   this.router.navigate(['inicio-estudiante']);
+          if (user.type === 'STUDENT') {
+            this.router.navigate(['inicio-estudiante']);
 
-          // } else if (user.type === 'TEACHER') {
-          //   this.router.navigate(['inicio-maestro']);
+          } else if (user.type === 'TEACHER') {
+            this.router.navigate(['inicio-maestro']);
 
-          // } else {
-          //   this.router.navigate(['inicio-administrador']);
+          } else {
+            this.router.navigate(['inicio-administrador']);
 
-          // }
+          }
           this.showHeader = true;
           this.load = true;
         })

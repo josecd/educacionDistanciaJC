@@ -1,3 +1,4 @@
+import { TareasPorMateriaAlumnoComponent } from './admin/pages/tareas/tareas-por-materia-alumno/tareas-por-materia-alumno.component';
 import { TareasEntregasComponent } from './admin/pages/tareas/tareas-entregas/tareas-entregas.component';
 import { TareasHomeComponent } from './admin/pages/tareas/tareas-home/tareas-home.component';
 import { GrupoModificarComponent } from './admin/pages/grupos/grupo-modificar/grupo-modificar.component';
@@ -17,7 +18,7 @@ import { ProfesoresHomeComponent } from './admin/pages/profesores/profesores-hom
 
 
 const routes: Routes = [
-  { path: '',redirectTo: 'inicio',pathMatch: 'full'},
+  { path: '',redirectTo: 'inicio-administrador',pathMatch: 'full'},
   // { path: 'iniciouser', component: UserHomeComponent,
   { path: 'inicio', component: UserHomeComponent},
   { path: 'inicio/:id', component: UserHomeComponent,canActivate: [AuthGuard]},
@@ -45,9 +46,9 @@ const routes: Routes = [
   
   //Estudiante
   { path: 'inicio-estudiante', component: AlumnoHomeComponent,canActivate: [AuthGuard]},
-  // { path: 'materias', component: MateriasHomeComponent,canActivate: [AuthGuard] },
-  // { path: 'calificaciones', component: MateriasHomeComponent,canActivate: [AuthGuard] },
-  // { path: 'tareas', component: MateriasHomeComponent,canActivate: [AuthGuard] },
+  { path: 'entregar-tareas/:id', component: TareasPorMateriaAlumnoComponent,canActivate: [AuthGuard] },
+  // { path: 'calificaciones-tareas/:id', component: TareasPorMateriaAlumnoComponent,canActivate: [AuthGuard] },
+
 
 
 

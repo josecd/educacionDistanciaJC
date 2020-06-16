@@ -40,6 +40,8 @@ import { CalificacionesHomeComponent } from './admin/pages/calificaciones/califi
 import { CalificacionesEditComponent } from './admin/pages/calificaciones/calificaciones-edit/calificaciones-edit.component';
 import { TareasEntregasComponent } from './admin/pages/tareas/tareas-entregas/tareas-entregas.component';
 import { OnlineFrameComponent } from './modals/admin/online/online-frame/online-frame.component';
+import { TareasPorMateriaAlumnoComponent } from './admin/pages/tareas/tareas-por-materia-alumno/tareas-por-materia-alumno.component';
+import { EntregarTareaComponent } from './admin/pages/tareas/entregar-tarea/entregar-tarea.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +74,8 @@ import { OnlineFrameComponent } from './modals/admin/online/online-frame/online-
     CalificacionesEditComponent,
     TareasEntregasComponent,
     OnlineFrameComponent,
+    TareasPorMateriaAlumnoComponent,
+    EntregarTareaComponent,
   ],
   imports: [
     BrowserModule,

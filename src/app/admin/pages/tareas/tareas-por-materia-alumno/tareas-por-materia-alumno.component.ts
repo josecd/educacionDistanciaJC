@@ -1,7 +1,9 @@
+import { OnlineFrameComponent } from './../../../../modals/admin/online/online-frame/online-frame.component';
+import { EntregarTareaComponent } from './../entregar-tarea/entregar-tarea.component';
 import { UserServiceService } from './../../../../services/user/user-service.service';
 import { AuthServiceService } from './../../../../services/auth/auth-service.service';
 import { AdminService } from './../../../../services/admin/admin.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -9,13 +11,15 @@ import { globals } from 'src/environments/golbals';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as type from '../../../../../environments/golbals';
 import { MatTableDataSource } from '@angular/material/table';
-@Component({
-  selector: 'app-alumno-home',
-  templateUrl: './alumno-home.component.html',
-  styleUrls: ['./alumno-home.component.scss']
-})
-export class AlumnoHomeComponent implements OnInit {
+import { MatDialog } from '@angular/material/dialog';
+import { take } from 'rxjs/operators';
 
+@Component({
+  selector: 'app-tareas-por-materia-alumno',
+  templateUrl: './tareas-por-materia-alumno.component.html',
+  styleUrls: ['./tareas-por-materia-alumno.component.scss']
+})
+export class TareasPorMateriaAlumnoComponent implements OnInit {
   userType = globals.type;
   idGroup = globals.data;
   idUser = globals.udi
@@ -33,11 +37,16 @@ export class AlumnoHomeComponent implements OnInit {
   userObs$: Observable<any>;
   userSub: Subscription;
 
+  id
   constructor(
     private router: Router,
     private _admin: AdminService,
-    private _user: UserServiceService
+    private _user: UserServiceService,
+    private route: ActivatedRoute,
+    public dialog: MatDialog,
+
   ) {
+    this.id = this.route.snapshot.paramMap.get("id");    
     console.log(this.idGroup);
     
    }
@@ -57,18 +66,15 @@ export class AlumnoHomeComponent implements OnInit {
     }
   }
   loadUser(){
-    this.userObs$ = this._user.login(this.idUser);
-    this.userSub = this.userObs$.subscribe(res=>{
-      this.grupoObs$ = this._admin.getMateriasBygroup(res.idGroup._id);
+      this.grupoObs$ = this._admin.getTareasByIdGroup(this.id);
       this.grupoSub = this.grupoObs$.subscribe(res => {
         console.log(res);
-        
         this.dataSource = new MatTableDataSource(res);
         this.lengthTable = res.length;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       })
-    });
+    
   }
 
   //Metodo para el filtro de la tabla
@@ -81,9 +87,25 @@ export class AlumnoHomeComponent implements OnInit {
     }
   }
 
-  goTareasEntregar(id) {
-
-    this.router.navigate(['/entregar-tareas', id._id]);
-    // this.router.navigateByUrl('/modificar-grupos',id); 
+  openTareaEntregar(tarea){
+   
+      this.dialog.open(EntregarTareaComponent, {
+        // width: '100%',
+        // height:'100%',
+        disableClose: true,
+        data: {
+          idTarea: this.id,
+          tarea: tarea
+        }
+      });
+    
+  }
+  opdenCreateTaskOnline(id) {
+    this.dialog.open(OnlineFrameComponent, {
+      width: '100%',
+      // height:'100%',
+      disableClose: true,
+      data: id
+    });
   }
 }

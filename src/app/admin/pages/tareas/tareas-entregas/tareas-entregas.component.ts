@@ -13,7 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./tareas-entregas.component.scss']
 })
 export class TareasEntregasComponent implements OnInit {
-  userType = globals.type;
+  userType = globals.type; 
   idUser = globals.udi;
   //Aqui comienza la tabla
   displayedColumns: string[] = ['name', 'email','calf', 'acciones'];
@@ -36,8 +36,11 @@ export class TareasEntregasComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.idUser);
+
     this.id = this.route.snapshot.paramMap.get("id");    
     this.loadMaterias();
+    
   }
   ngOnDestroy() {
     if (this.tareasSub) {

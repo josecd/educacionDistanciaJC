@@ -1,3 +1,4 @@
+import { returnDocumentsWithId } from './../../helpers/returnDocuments.helper';
 import { Observable } from 'rxjs';
 import { AngularFirestoreCollection, AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
@@ -73,7 +74,7 @@ export class AdminService {
   getMateriaById(id) {
     return this.afs.collection('subjects').doc(id).valueChanges();
   }
-  getMateriaByIdGroup(idGroup, idSubject){
+  getMateriaByIdGroup(idGroup, idSubject) {
     return this.afs.collection('groups').doc(idGroup).collection('subjects').doc(idSubject).valueChanges();
   }
   getMateriasBygroup(idGroup) {
@@ -157,48 +158,92 @@ export class AdminService {
   }
 
   //Tareas
-  getTareasbyTeacher(idTeacher,idMAteria) {
-    return this.afs.collection('task', ref => ref.where('idGroup','==',idMAteria).where('idProfesor','==',idTeacher).orderBy('created_at','desc')) .valueChanges();
+  getTareasbyTeacher(idTeacher, idMAteria) {
+    return this.afs.collection('task', ref => ref.where('idGroup', '==', idMAteria).where('idProfesor', '==', idTeacher).orderBy('created_at', 'desc')).valueChanges();
   }
   getTareasbyTeacherEntregas(id) {
     return this.afs.collection('task').doc(id).collection('taskStudents').valueChanges()
   }
-  getTareaById(id){
-    return this.afs.collection('task').doc(id).valueChanges();
+
+  async getTareasbyStudent(id, idStudent): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      
+
+    const d=  await this.afs.collection('task').doc(id).collection('taskStudents', ref => ref.where('idUser', '==', idStudent)).ref.get().then(returnDocumentsWithId).then().then(f=>resolve(f[0]))
+    });
   }
 
-  updateStatusTarea(id,estado): Promise<any>{
+  getTareaById(id) {
+    return this.afs.collection('task').doc(id).valueChanges();
+  }
+  getTareasByIdGroup(idGroup) {
+    return this.afs.collection('task', ref => ref.where('idByGroup', '==', idGroup)).valueChanges();
+  }
+  // getTareasByIdGroupCalificaciones(idGroup,idUser) {
+  //   return this.afs.collection('task').doc(idGroup).collection('taskStudents',ref=>ref.where('idUser','==',idUser).where('califica')).valueChanges();
+  // }
+
+  
+  updateStatusTarea(id, estado): Promise<any> {
     return new Promise(async (resolve, reject) => {
       this.afs.collection('task').doc(id).update({
         updated_at: new Date(),
-        status:estado
-      }).then(res=>{
+        status: estado
+      }).then(res => {
         resolve(res);
-      }).catch(error=>{
+      }).catch(error => {
         reject(error);
       })
     });
   }
-  addTask(data,form): Promise<any> {
+  addTask(data, form): Promise<any> {
     return new Promise(async (resolve, reject) => {
       const id = this.afs.createId();
       const f = await this.afs.collection('task').doc(id).set({
         created_at: new Date(),
         updated_at: new Date(),
-        _id:id,
-        idGroup:data.idGroud,
-        idMateria:data.idMateria,
+        _id: id,
+        idGroup: data.idGroud,
+        idMateria: data.idMateria,
         idProfesor: data.idProfesor,
         dataTeacher: data.idTeacher,
         dataMateria: data.idSubject,
-        status:'ACTIVO',
-        type:form.type,
-        description:form.description,
+        status: 'ACTIVO',
+        type: form.type,
+        description: form.description,
         name: form.name,
-        url:form.url
-      }).then(res=>{resolve(res)})
-      .catch(error=>{reject(error)})
+        url: form.url,
+        idByGroup: form.idByGroup
+      }).then(res => { resolve(res) })
+        .catch(error => { reject(error) })
     })
   }
+
+  addTaskStudents(idUser, idTask, form): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      const id = this.afs.createId();
+      const f = await this.afs.collection('task').doc(idTask).collection('taskStudents').doc(id).set({
+        created_at: new Date(),
+        updated_at: new Date(),
+        _id: id,
+        cal: 'Sin calificar',
+        idTask: idTask,
+        idUser: idUser,
+        description: form.description,
+        url: form.url,
+
+        nameTask: form.nameTask,
+        descriptionTask: form.descriptionTask,
+
+        status: 'ACTIVO',
+        type: form.type,
+
+      }).then(res => {
+        resolve(res)
+      })
+        .catch(error => { reject(error) })
+    })
+  }
+
 
 }

@@ -48,7 +48,7 @@
                     <td mat-cell class="buttons" mat-cell *matCellDef="let user">
                       <!-- <button mat-cell mat-raised-button color="primary">Editar</button> -->
                       <button *ngIf="user.type != 'ONLINE'"  (click)="openTareaEntregar(user)"  mat-cell mat-raised-button color="primary">Entregar</button>
-                      <button *ngIf="user.type ==='ONLINE'"  (click)="opdenCreateTaskOnline(user)"  mat-cell mat-raised-button color="primary">Entrar</button>
+                      <button *ngIf="user.type ==='ONLINE'"  [disabled]="user.status == 'INACTIVO'" (click)="opdenCreateTaskOnline(user)"  mat-cell mat-raised-button color="primary">Entrar</button>
                     
                     </td>
                   </ng-container>

@@ -246,4 +246,55 @@ export class AdminService {
   }
 
 
+  updateTaskStudents(idTask,idTaskStudent, form): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      const f = await this.afs.collection('task').doc(idTask).collection('taskStudents').doc(idTaskStudent).update({
+        updated_at: new Date(),
+        cal: form.calificacion,
+      }).then(res => {
+        resolve(res)
+      })
+        .catch(error => { reject(error) })
+    })
+  }
+
+  async getHorario(id): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+    const d=  await this.afs.collection('groups').doc(id).collection('horario').ref.get().then(returnDocumentsWithId).then().then(f=>{resolve(f[0])
+  
+     })
+
+      
+  });
+  }
+  subirHorario( idGroup,form): Promise<any> {
+    console.log(form);
+    return new Promise(async (resolve, reject) => {
+      const id =this.afs.createId()
+      const f = await this.afs.collection('groups').doc(idGroup).collection('horario').doc(id).set({
+        _id: id,
+        created_at: new Date(),
+        updated_at: new Date(),
+        status: 'ACTIVO',
+
+        url: form.horario,
+      }).then(res => {
+        resolve(res)
+      })
+        .catch(error => { reject(error) })
+    })
+  }
+
+  updateHorario( id,idGroup ,form): Promise<any> {
+    console.log(form);
+    return new Promise(async (resolve, reject) => {
+      const f = await this.afs.collection('groups').doc(idGroup).collection('horario').doc(id).update({
+        updated_at: new Date(),
+        url: form.horario,
+      }).then(res => {
+        resolve(res)
+      })
+        .catch(error => { reject(error) })
+    })
+  }
 }

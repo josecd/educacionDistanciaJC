@@ -1,3 +1,4 @@
+import { VerHorarioComponent } from './admin/pages/horario/horario/ver-horario/ver-horario.component';
 import { TareasPorMateriaAlumnoComponent } from './admin/pages/tareas/tareas-por-materia-alumno/tareas-por-materia-alumno.component';
 import { TareasEntregasComponent } from './admin/pages/tareas/tareas-entregas/tareas-entregas.component';
 import { TareasHomeComponent } from './admin/pages/tareas/tareas-home/tareas-home.component';
@@ -49,8 +50,7 @@ const routes: Routes = [
   { path: 'entregar-tareas/:id', component: TareasPorMateriaAlumnoComponent,canActivate: [AuthGuard] },
   // { path: 'calificaciones-tareas/:id', component: TareasPorMateriaAlumnoComponent,canActivate: [AuthGuard] },
 
-
-
+  { path: 'horario', component: VerHorarioComponent,canActivate: [AuthGuard]},
 
   { path: '**', component: ErrorPageComponent }
 ];

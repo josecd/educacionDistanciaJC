@@ -42,6 +42,9 @@ import { TareasEntregasComponent } from './admin/pages/tareas/tareas-entregas/ta
 import { OnlineFrameComponent } from './modals/admin/online/online-frame/online-frame.component';
 import { TareasPorMateriaAlumnoComponent } from './admin/pages/tareas/tareas-por-materia-alumno/tareas-por-materia-alumno.component';
 import { EntregarTareaComponent } from './admin/pages/tareas/entregar-tarea/entregar-tarea.component';
+import { CalificarProfesorComponent } from './admin/pages/tareas/calificar-profesor/calificar-profesor/calificar-profesor.component';
+import { AgreagarHorarioComponent } from './admin/pages/horario/horario/agreagar-horario/agreagar-horario.component';
+import { VerHorarioComponent } from './admin/pages/horario/horario/ver-horario/ver-horario.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +79,9 @@ import { EntregarTareaComponent } from './admin/pages/tareas/entregar-tarea/entr
     OnlineFrameComponent,
     TareasPorMateriaAlumnoComponent,
     EntregarTareaComponent,
+    CalificarProfesorComponent,
+    AgreagarHorarioComponent,
+    VerHorarioComponent,
   ],
   imports: [
     BrowserModule,

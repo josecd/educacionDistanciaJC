@@ -1,3 +1,4 @@
+import { AgreagarHorarioComponent } from './../../horario/horario/agreagar-horario/agreagar-horario.component';
 import { MateriasCreateGroupComponent } from './../../materias/materias-create-group/materias-create-group.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
@@ -90,6 +91,14 @@ export class GrupoModificarComponent implements OnInit {
 
   }
 
+  openHorario(){
+    this.dialog.open(AgreagarHorarioComponent, {
+      // maxWidth: '500px',
+      // height: '100%',
+      disableClose: false,
+      data: this.id,
+    });
+  }
   addMateriaGrupo(){
     this.dialog.open(MateriasCreateGroupComponent, {
       // maxWidth: '500px',
@@ -110,8 +119,6 @@ export class GrupoModificarComponent implements OnInit {
 
   goVerGrupo(id) {
     this.router.navigate(['/modificar-grupos', id]);
-    console.log('ddd');
-    
     // this.router.navigateByUrl('/modificar-grupos',id); 
   }
 

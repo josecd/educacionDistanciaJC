@@ -1,3 +1,4 @@
+import { CalificarProfesorComponent } from './../calificar-profesor/calificar-profesor/calificar-profesor.component';
 import { Observable, Subscription } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
@@ -6,6 +7,7 @@ import { AdminService } from './../../../../services/admin/admin.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-tareas-entregas',
@@ -33,6 +35,8 @@ export class TareasEntregasComponent implements OnInit {
     private router: Router,
     private _admin: AdminService,
     private route: ActivatedRoute,
+    public dialog: MatDialog,
+
   ) { }
 
   ngOnInit(): void {
@@ -68,8 +72,12 @@ export class TareasEntregasComponent implements OnInit {
     }
   }
 
-  opdenCalf(){
-    console.log('Me activo');
+  opdenCalf(user){
+      this.dialog.open(CalificarProfesorComponent, {
+        // maxWidth: '500px',
+        disableClose: false,
+        data:user
+      });
     
   }
 }

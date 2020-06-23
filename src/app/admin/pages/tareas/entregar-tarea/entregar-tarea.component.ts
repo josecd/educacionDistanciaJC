@@ -15,10 +15,11 @@ import Swal from 'sweetalert2';
 export class EntregarTareaComponent implements OnInit {
   tareasForm: FormGroup;
   idUser=globals.udi;
+  nameUser = globals.name;
   dataTask
   imageSrc
   imageSrc2
-
+  status
   public mensajeArchivo = 'No hay un archivo seleccionado';
   public datosFormulario = new FormData();
   public nombreArchivo = '';
@@ -30,6 +31,7 @@ export class EntregarTareaComponent implements OnInit {
   tareasObs$: Observable<any>;
   tateasSub:Subscription;
   info
+  calf
   constructor(
     public dialogRef: MatDialogRef<EntregarTareaComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
@@ -39,6 +41,7 @@ export class EntregarTareaComponent implements OnInit {
     private _admin : AdminService
   ) {
     console.log(data);
+    this.status = data.tarea.status
     this.dataTask = data;
     this.loadInformation();
     this.loadForm();
@@ -48,6 +51,7 @@ export class EntregarTareaComponent implements OnInit {
     this._admin.getTareasbyStudent(this.dataTask.tarea._id, this.idUser).then(res=>{
       this.info = res
       this.imageSrc2 = res.url
+      this.calf = res.cal
       console.log(this.info);
       
     })
@@ -192,7 +196,7 @@ export class EntregarTareaComponent implements OnInit {
             console.log('entre');
             
             this.tareasForm.patchValue({ url: res })
-            this._admin.addTaskStudents(this.idUser,this.dataTask.tarea._id,this.tareasForm.value).then(res => {
+            this._admin.addTaskStudents(this.nameUser,this.dataTask.tarea._id,this.tareasForm.value).then(res => {
               Swal.hideLoading()
               Swal.close()
               this.mensajeArchivo = 'No hay un archivo seleccionado';
